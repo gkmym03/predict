@@ -1,480 +1,115 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
-<title>README.md</title>
-<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
-
-<style>
-/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
-/*---------------------------------------------------------------------------------------------
- *  Copyright (c) Microsoft Corporation. All rights reserved.
- *  Licensed under the MIT License. See License.txt in the project root for license information.
- *--------------------------------------------------------------------------------------------*/
-
-body {
-	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
-	font-size: var(--vscode-markdown-font-size, 14px);
-	padding: 0 26px;
-	line-height: var(--vscode-markdown-line-height, 22px);
-	word-wrap: break-word;
-}
-
-#code-csp-warning {
-	position: fixed;
-	top: 0;
-	right: 0;
-	color: white;
-	margin: 16px;
-	text-align: center;
-	font-size: 12px;
-	font-family: sans-serif;
-	background-color:#444444;
-	cursor: pointer;
-	padding: 6px;
-	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
-}
-
-#code-csp-warning:hover {
-	text-decoration: none;
-	background-color:#007acc;
-	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
-}
-
-body.scrollBeyondLastLine {
-	margin-bottom: calc(100vh - 22px);
-}
-
-body.showEditorSelection .code-line {
-	position: relative;
-}
-
-body.showEditorSelection .code-active-line:before,
-body.showEditorSelection .code-line:hover:before {
-	content: "";
-	display: block;
-	position: absolute;
-	top: 0;
-	left: -12px;
-	height: 100%;
-}
-
-body.showEditorSelection li.code-active-line:before,
-body.showEditorSelection li.code-line:hover:before {
-	left: -30px;
-}
-
-.vscode-light.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.15);
-}
-
-.vscode-light.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(0, 0, 0, 0.40);
-}
-
-.vscode-light.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-dark.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.4);
-}
-
-.vscode-dark.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 255, 255, 0.60);
-}
-
-.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-.vscode-high-contrast.showEditorSelection .code-active-line:before {
-	border-left: 3px solid rgba(255, 160, 0, 0.7);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line:hover:before {
-	border-left: 3px solid rgba(255, 160, 0, 1);
-}
-
-.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
-	border-left: none;
-}
-
-img {
-	max-width: 100%;
-	max-height: 100%;
-}
-
-a {
-	text-decoration: none;
-}
-
-a:hover {
-	text-decoration: underline;
-}
-
-a:focus,
-input:focus,
-select:focus,
-textarea:focus {
-	outline: 1px solid -webkit-focus-ring-color;
-	outline-offset: -1px;
-}
-
-hr {
-	border: 0;
-	height: 2px;
-	border-bottom: 2px solid;
-}
-
-h1 {
-	padding-bottom: 0.3em;
-	line-height: 1.2;
-	border-bottom-width: 1px;
-	border-bottom-style: solid;
-}
-
-h1, h2, h3 {
-	font-weight: normal;
-}
-
-table {
-	border-collapse: collapse;
-}
-
-table > thead > tr > th {
-	text-align: left;
-	border-bottom: 1px solid;
-}
-
-table > thead > tr > th,
-table > thead > tr > td,
-table > tbody > tr > th,
-table > tbody > tr > td {
-	padding: 5px 10px;
-}
-
-table > tbody > tr + tr > td {
-	border-top: 1px solid;
-}
-
-blockquote {
-	margin: 0 7px 0 5px;
-	padding: 0 16px 0 10px;
-	border-left-width: 5px;
-	border-left-style: solid;
-}
-
-code {
-	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
-	font-size: 1em;
-	line-height: 1.357em;
-}
-
-body.wordWrap pre {
-	white-space: pre-wrap;
-}
-
-pre:not(.hljs),
-pre.hljs code > div {
-	padding: 16px;
-	border-radius: 3px;
-	overflow: auto;
-}
-
-pre code {
-	color: var(--vscode-editor-foreground);
-	tab-size: 4;
-}
-
-/** Theming */
-
-.vscode-light pre {
-	background-color: rgba(220, 220, 220, 0.4);
-}
-
-.vscode-dark pre {
-	background-color: rgba(10, 10, 10, 0.4);
-}
-
-.vscode-high-contrast pre {
-	background-color: rgb(0, 0, 0);
-}
-
-.vscode-high-contrast h1 {
-	border-color: rgb(0, 0, 0);
-}
-
-.vscode-light table > thead > tr > th {
-	border-color: rgba(0, 0, 0, 0.69);
-}
-
-.vscode-dark table > thead > tr > th {
-	border-color: rgba(255, 255, 255, 0.69);
-}
-
-.vscode-light h1,
-.vscode-light hr,
-.vscode-light table > tbody > tr + tr > td {
-	border-color: rgba(0, 0, 0, 0.18);
-}
-
-.vscode-dark h1,
-.vscode-dark hr,
-.vscode-dark table > tbody > tr + tr > td {
-	border-color: rgba(255, 255, 255, 0.18);
-}
-
-</style>
-
-<style>
-/* Tomorrow Theme */
-/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
-/* Original theme - https://github.com/chriskempson/tomorrow-theme */
-
-/* Tomorrow Comment */
-.hljs-comment,
-.hljs-quote {
-	color: #8e908c;
-}
-
-/* Tomorrow Red */
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag,
-.hljs-name,
-.hljs-selector-id,
-.hljs-selector-class,
-.hljs-regexp,
-.hljs-deletion {
-	color: #c82829;
-}
-
-/* Tomorrow Orange */
-.hljs-number,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-literal,
-.hljs-type,
-.hljs-params,
-.hljs-meta,
-.hljs-link {
-	color: #f5871f;
-}
-
-/* Tomorrow Yellow */
-.hljs-attribute {
-	color: #eab700;
-}
-
-/* Tomorrow Green */
-.hljs-string,
-.hljs-symbol,
-.hljs-bullet,
-.hljs-addition {
-	color: #718c00;
-}
-
-/* Tomorrow Blue */
-.hljs-title,
-.hljs-section {
-	color: #4271ae;
-}
-
-/* Tomorrow Purple */
-.hljs-keyword,
-.hljs-selector-tag {
-	color: #8959a8;
-}
-
-.hljs {
-	display: block;
-	overflow-x: auto;
-	color: #4d4d4c;
-	padding: 0.5em;
-}
-
-.hljs-emphasis {
-	font-style: italic;
-}
-
-.hljs-strong {
-	font-weight: bold;
-}
-</style>
-
-<style>
-/*
- * Markdown PDF CSS
- */
-
- body {
-	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
-	padding: 0 12px;
-}
-
-pre {
-	background-color: #f8f8f8;
-	border: 1px solid #cccccc;
-	border-radius: 3px;
-	overflow-x: auto;
-	white-space: pre-wrap;
-	overflow-wrap: break-word;
-}
-
-pre:not(.hljs) {
-	padding: 23px;
-	line-height: 19px;
-}
-
-blockquote {
-	background: rgba(127, 127, 127, 0.1);
-	border-color: rgba(0, 122, 204, 0.5);
-}
-
-.emoji {
-	height: 1.4em;
-}
-
-code {
-	font-size: 14px;
-	line-height: 19px;
-}
-
-/* for inline code */
-:not(pre):not(.hljs) > code {
-	color: #C9AE75; /* Change the old color so it seems less like an error */
-	font-size: inherit;
-}
-
-/* Page Break : use <div class="page"/> or <div class="page"></div> to insert page break
--------------------------------------------------------- */
-.page {
-	page-break-after: always;
-}
-
-</style>
-
-<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <meta charset="UTF-8">
+  <title>DiscriminantAnalysis.exe 簡易手順書</title>
+  <style>
+    body {
+      font-family: "Meiryo", "Yu Gothic", sans-serif;
+      line-height: 1.7;
+      max-width: 920px;
+      margin: 32px auto;
+      padding: 0 24px;
+      color: #222;
+    }
+    h1 {
+      border-bottom: 2px solid #444;
+      padding-bottom: 8px;
+    }
+    h2 {
+      margin-top: 32px;
+      border-left: 6px solid #3b6ea8;
+      padding-left: 10px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 12px 0 20px;
+    }
+    th,
+    td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    th {
+      background: #f2f5f8;
+    }
+    code {
+      background: #f5f5f5;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+  </style>
 </head>
 <body>
-  <script>
-    mermaid.initialize({
-      startOnLoad: true,
-      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
-          ? 'dark'
-          : 'default'
-    });
-  </script>
-<h1 id="判別分析ツール">判別分析ツール</h1>
-<p>学習用データとテスト用データを読み込み、線形判別分析（LDA）でテスト用データに予測ラベルを付与するツールです。GUI とコマンドラインの両方で実行できます。</p>
-<h2 id="実行ファイル">実行ファイル</h2>
-<ul>
-<li><code>DiscriminantAnalysis.exe</code>
-<ul>
-<li>CSV と Excel（<code>.xlsx</code>）に対応した通常版です。</li>
-</ul>
-</li>
-<li><code>DiscriminantAnalysisCSV.exe</code>
-<ul>
-<li>CSV のみに対応した軽量版です。</li>
-</ul>
-</li>
-</ul>
-<h2 id="対応形式">対応形式</h2>
-<table>
-<thead>
-<tr>
-<th>ツール</th>
-<th>入力</th>
-<th>出力</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>DiscriminantAnalysis</code></td>
-<td><code>.csv</code>, <code>.xlsx</code></td>
-<td>入力したテストファイルと同じ形式</td>
-</tr>
-<tr>
-<td><code>DiscriminantAnalysisCSV</code></td>
-<td><code>.csv</code></td>
-<td><code>.csv</code></td>
-</tr>
-</tbody>
-</table>
-<p>通常版では、テストファイルが <code>.csv</code> の場合は CSV、<code>.xlsx</code> の場合は Excel で結果を保存します。レポートも同じ拡張子で保存されます。</p>
-<h2 id="入力データ">入力データ</h2>
-<p>学習用データ:</p>
-<ul>
-<li>1列目: ID</li>
-<li>2列目以降: 特徴量</li>
-<li>最終列: クラスター</li>
-<li>クラスターは2種類以上必要です。</li>
-</ul>
-<p>テスト用データ:</p>
-<ul>
-<li>1列目: ID</li>
-<li>2列目以降: 特徴量</li>
-<li>最終列名が <code>label</code>, <code>target</code>, <code>cluster</code> の場合はラベル列として扱い、予測対象の特徴量から除外します。</li>
-</ul>
-<p>特徴量はすべて数値である必要があります。学習用データとテスト用データの特徴量数は一致している必要があります。</p>
-<h2 id="出力ファイル">出力ファイル</h2>
-<p>出力先フォルダを指定しない場合、テスト用データと同じフォルダに保存します。ファイル名には <code>MMDDHHMM</code> 形式のタイムスタンプが付き、同名ファイルがある場合は <code>_01</code>, <code>_02</code> のような連番が付きます。</p>
-<ul>
-<li><code>lda_report_日時.csv</code> または <code>lda_report_日時.xlsx</code>
-<ul>
-<li>学習データの判別精度、学習データのクラスターと予測グループのクロス集計、クラス事前確率、係数、切片、標準化に使った平均と分散を出力します。</li>
-<li>クロス集計では、行に「クラスター」、列に「予測グループ」を表示します。</li>
-</ul>
-</li>
-<li><code>&lt;テストファイル名&gt;_with_prediction_日時.csv</code> または <code>.xlsx</code>
-<ul>
-<li>テスト用データに <code>predicted_label</code> 列を追加した結果を出力します。</li>
-</ul>
-</li>
-</ul>
-<h2 id="guiで使う">GUIで使う</h2>
-<ol>
-<li>実行ファイルを起動します。</li>
-<li>学習用ファイルを選択します。</li>
-<li>テスト用ファイルを選択します。</li>
-<li>必要に応じて出力フォルダを選択します。</li>
-<li>実行ボタンを押します。</li>
-</ol>
-<p>引数なしで Python スクリプトを起動した場合も GUI が起動します。</p>
-<pre class="hljs"><code><div>python discriminant_analysis.py
-python discriminant_analysis_csv.py
-</div></code></pre>
-<h2 id="コマンドラインで使う">コマンドラインで使う</h2>
-<p>通常版:</p>
-<pre class="hljs"><code><div>python discriminant_analysis.py <span class="hljs-literal">--train</span> data.xlsx <span class="hljs-literal">--test</span> test.xlsx <span class="hljs-literal">--output-dir</span> output
-</div></code></pre>
-<p>CSV専用版:</p>
-<pre class="hljs"><code><div>python discriminant_analysis_csv.py <span class="hljs-literal">--train</span> data.csv <span class="hljs-literal">--test</span> test.csv <span class="hljs-literal">--output-dir</span> output
-</div></code></pre>
-<p>主な引数:</p>
-<ul>
-<li><code>--train</code>: 学習用ファイル</li>
-<li><code>--test</code>: テスト用ファイル</li>
-<li><code>--output-dir</code>: 出力フォルダ</li>
-<li><code>--output-report</code>: レポートの出力ファイル名</li>
-<li><code>--output-test</code>: 予測結果の出力ファイル名</li>
-<li><code>--gui</code>: GUIを起動</li>
-</ul>
-<p><code>--output-report</code> と <code>--output-test</code> を指定した場合も、指定名にタイムスタンプが付与されます。</p>
-<h2 id="ビルド">ビルド</h2>
-<p>通常版:</p>
-<pre class="hljs"><code><div>.\build_exe.bat
-</div></code></pre>
-<p>CSV専用版:</p>
-<pre class="hljs"><code><div>.\build_exe_csv.bat
-</div></code></pre>
-<p>通常版のビルドには <code>pyinstaller</code>, <code>numpy</code>, <code>openpyxl</code> を使用します。CSV専用版のビルドには <code>pyinstaller</code>, <code>numpy</code> を使用します。</p>
-<h2 id="追加出力">追加出力</h2>
-<ul>
-<li><code>lda_report_日時.csv</code> または <code>lda_report_日時.xlsx</code> の一番下に、テストデータでの予測グループ集計分布を出力します。</li>
-<li>集計分布は <code>predicted_label</code>, <code>count</code>, <code>ratio</code> の列で、予測グループごとの件数と比率を確認できます。</li>
-</ul>
+  <h1>DiscriminantAnalysis.exe 簡易手順書</h1>
 
+  <p>このツールは、学習ファイルをもとにテストファイルのグループを予測する簡易的な判別分析ツールです。</p>
+
+  <h2>1. 事前準備</h2>
+  <p>次のファイルを用意します。</p>
+  <ul>
+    <li>学習ファイル: 正解グループが入っているデータ</li>
+    <li>テストファイル: 予測したいデータ</li>
+  </ul>
+  <p>対応形式は <code>.csv</code> または <code>.xlsx</code> です。</p>
+
+  <h3>学習ファイルの形式</h3>
+  <table>
+    <thead>
+      <tr><th>列</th><th>内容</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1列目</td><td>ID</td></tr>
+      <tr><td>2列目以降</td><td>数値データ</td></tr>
+      <tr><td>最後の列</td><td>正解グループ</td></tr>
+    </tbody>
+  </table>
+  <p>正解グループは 2種類以上必要です。</p>
+
+  <h3>テストファイルの形式</h3>
+  <table>
+    <thead>
+      <tr><th>列</th><th>内容</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>1列目</td><td>ID</td></tr>
+      <tr><td>2列目以降</td><td>数値データ</td></tr>
+    </tbody>
+  </table>
+  <p>学習ファイルとテストファイルで、数値データの列数をそろえてください。</p>
+
+  <h2>2. 実行手順</h2>
+  <ol>
+    <li><code>DiscriminantAnalysis.exe</code> をダブルクリックします。</li>
+    <li>「学習ファイル」の参照ボタンから、学習ファイルを選択します。</li>
+    <li>「テストファイル」の参照ボタンから、テストファイルを選択します。</li>
+    <li>必要に応じて「出力フォルダ」を選択します。</li>
+    <li>「実行」ボタンを押します。</li>
+    <li>完了メッセージが表示されたら終了です。</li>
+  </ol>
+  <p>出力フォルダを指定しない場合は、テストファイルと同じフォルダに結果が保存されます。</p>
+
+  <h2>3. 出力されるファイル</h2>
+  <p>実行すると、主に次の2つのファイルが作成されます。</p>
+  <table>
+    <thead>
+      <tr><th>ファイル名の例</th><th>内容</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>lda_report_日時.csv</code> または <code>.xlsx</code></td><td>判別結果のレポート</td></tr>
+      <tr><td><code>テストファイル名_with_prediction_日時.csv</code> または <code>.xlsx</code></td><td>テストファイルに予測結果を追加したもの</td></tr>
+    </tbody>
+  </table>
+  <p>予測結果ファイルには、最後の列に <code>predicted_label</code> が追加されます。</p>
+
+  <h2>4. 注意点</h2>
+  <ul>
+    <li>数値データの列には、文字ではなく数値を入力してください。</li>
+    <li>学習ファイルの最後の列には、グループ名またはグループ番号を入力してください。</li>
+    <li>学習ファイルとテストファイルの数値データ列数が違うと実行できません。</li>
+    <li>同じ名前の出力ファイルがある場合でも、日時や連番が付くため上書きされません。</li>
+  </ul>
 </body>
 </html>
